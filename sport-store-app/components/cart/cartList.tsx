@@ -14,12 +14,16 @@ import { Tooltip } from "@nextui-org/tooltip";
 import { RootState } from "@/store/store";
 import { getCookie } from "@/hooks/useGetCookie";
 import { Button } from "@nextui-org/button";
+import EditAddressModal from "../modals/EditAddressModal";
+import { deleteCartItem } from "@/services/cart/deleteCartItem";
+import { sendCart } from "@/services/cart/sendCart";
 
 const columns = [
   { name: "Product Name", uid: "productName" },
   { name: "Price", uid: "productPrice" },
   { name: "Quantity", uid: "quantity" },
   { name: "Image", uid: "productImage" },
+  { name: "Address", uid: "address" },
   { name: "Actions", uid: "actions" },
 ];
 
@@ -48,11 +52,45 @@ interface CartItem {
   productQuantity: number;
   productImage: string;
   quantity: number;
+  address: string;
 }
 
 function CartList() {
   const user = useSelector((state: RootState) => state.auth.user);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isEditAddressOpen, setIsEditAddressOpen] = useState(false);
+  const [currentAddress, setCurrentAddress] = useState(user?.address || "");
+  const [refresh, setRefresh] = useState<boolean>(false);
+  
+  const openEditAddressModal = () => setIsEditAddressOpen(true);
+  const closeEditAddressModal = () => setIsEditAddressOpen(false);
+
+  const handleSaveAddress = () => {
+    console.log("Dirección guardada:", currentAddress);
+    closeEditAddressModal();
+  };
+
+  const handleDeleteCartItem = async (productId: number) => {
+    if (!user) {
+      console.error("User not logged in");
+      return;
+    }
+
+    try {
+      let token = getCookie("token");
+      await deleteCartItem(user.id.toString(), productId, token!);
+      setCartItems((prevItems) => prevItems.filter((item) => item.productId !== productId));
+    } catch (error) {
+      console.error("Error deleting cart item:", error);
+    }
+  };
+
+  const handleSendCart = async () => {
+    if (user) {
+      await sendCart(user.id.toString(), currentAddress);
+      setRefresh((prev) => !prev);
+    }
+  };
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -73,14 +111,19 @@ function CartList() {
           },
         );
 
-        setCartItems(response.data);
+        setCartItems(
+          response.data.map((item: CartItem) => ({
+            ...item,
+            address: currentAddress,
+          }))
+        );
       } catch (error) {
         console.error("Error fetching cart items:", error);
       }
     };
 
     fetchCartItems();
-  }, [user]);
+  }, [user, currentAddress, refresh]);
 
   const renderCell = useCallback((item: any, columnKey: string) => {
     const cellValue = item[columnKey];
@@ -101,25 +144,13 @@ function CartList() {
             width="100"
           />
         );
+        case "address":
+          return item.address;
       case "actions":
         return (
           <div className="relative flex items-center gap-2 custom-actions">
-            <Tooltip content="Edit product">
-              <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                <svg
-                  className="bi bi-pencil-fill"
-                  fill="currentColor"
-                  height="20"
-                  viewBox="0 0 16 16"
-                  width="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z" />
-                </svg>
-              </span>
-            </Tooltip>
             <Tooltip color="danger" content="Delete product">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+              <span className="text-lg text-danger cursor-pointer active:opacity-50" onClick={() => handleDeleteCartItem(item.productId)}>
                 <svg
                   className="bi bi-trash3"
                   fill="red"
@@ -170,10 +201,20 @@ function CartList() {
           </TableBody>
         </Table>
       </div>
-      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "10px", marginRight:"30px" }}>
-        <Button className="mt-4" color="primary" >
+      <div className="gap-4" style={{ display: "flex", justifyContent: "flex-end", marginTop: "10px", marginRight:"30px" }}>
+        <Button className="mt-4" color="primary" onClick={handleSendCart}>
           Send Cart
         </Button>
+        <Button className="mt-4" color="primary" onClick={openEditAddressModal}>
+          Edit Address
+        </Button>
+        <EditAddressModal
+        isOpen={isEditAddressOpen}
+        onOpenChange={closeEditAddressModal}
+        address={currentAddress}
+        setAddress={setCurrentAddress}
+        handleSave={handleSaveAddress}
+      />
       </div>
     </div>
   );

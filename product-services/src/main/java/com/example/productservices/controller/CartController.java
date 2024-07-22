@@ -39,4 +39,13 @@ public class CartController {
         List<CartItemResponseDto> cartItems = cartService.getCartItemsByUser(user);
         return ResponseEntity.ok(cartItems);
     }
+
+    @DeleteMapping("/remove")
+    public ResponseEntity<Void> removeFromCart(@RequestBody CartRequestDto cartRequestDto) {
+        User user = new User();
+        user.setId(cartRequestDto.getUserId());
+
+        cartService.removeFromCart(user, cartRequestDto.getProductId());
+        return ResponseEntity.noContent().build();
+    }
 }

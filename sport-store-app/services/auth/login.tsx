@@ -1,5 +1,6 @@
 import { post } from "@/api/fetchApi";
 import { setCredentials } from "@/features/auth/authSlice";
+import Swal from "sweetalert2";
 
 interface User {
   id: number;
@@ -45,13 +46,22 @@ export const login =
 
       if (response.data.code === 200) {
         const { token, user } = response.data.data;
-
+        Swal.fire({
+          title: "Login Successful",
+          text: "Welcome back!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
         setCookie("token", token, 1);
         dispatch(setCredentials({ token, user }));
-      } else {
-        console.error("Error de login:", response.data.message);
       }
     } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        confirmButtonText: "Ok",
+      });
       console.error("Error de login:", error);
     }
   };

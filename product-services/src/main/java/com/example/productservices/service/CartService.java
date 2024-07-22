@@ -61,6 +61,12 @@ public class CartService {
         }).collect(Collectors.toList());
     }
 
+    public void removeFromCart(User user, Long productId) {
+        CartItem cartItem = cartItemRepository.findByUserAndProductId(user, productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found in cart"));
+        cartItemRepository.delete(cartItem);
+    }
+
     public void clearCart(User user) {
         cartItemRepository.deleteByUser(user);
     }

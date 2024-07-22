@@ -1,6 +1,7 @@
 package com.example.productservices.controller;
 
 import com.example.productservices.dto.OrderRequestDTO;
+import com.example.productservices.dto.OrderResponseDTO;
 import com.example.productservices.model.Order;
 import com.example.productservices.model.OrderItem;
 import com.example.productservices.service.OrderService;
@@ -24,17 +25,18 @@ public class OrderController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Order> createOrder(@RequestBody OrderRequestDTO orderRequestDTO) {
+    public ResponseEntity<OrderResponseDTO> createOrder(@RequestBody OrderRequestDTO orderRequestDTO) {
         UUID userId = orderRequestDTO.getUserId();
         String shippingAddress = orderRequestDTO.getShippingAddress();
 
-        Order order = orderService.createOrder(userId, shippingAddress);
+        OrderResponseDTO order = orderService.createOrder(userId, shippingAddress);
         return ResponseEntity.ok(order);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Order>> getOrdersByUserId(@PathVariable UUID userId) {
-        List<Order> orders = orderService.getOrdersByUserId(userId);
+    public ResponseEntity<List<OrderResponseDTO>> getOrdersByUserId(@PathVariable UUID userId) {
+        List<OrderResponseDTO> orders = orderService.getOrdersByUserId(userId);
         if (orders.isEmpty()) {
             return ResponseEntity.noContent().build();
         }

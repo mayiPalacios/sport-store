@@ -1,6 +1,7 @@
 package com.example.productservices.service;
 
 import com.example.productservices.dto.OrderRequestDTO;
+import com.example.productservices.dto.OrderResponseDTO;
 import com.example.productservices.model.*;
 import com.example.productservices.repository.*;
 import jakarta.transaction.Transactional;
@@ -38,7 +39,7 @@ public class OrderService {
     }
 
     @Transactional
-    public Order createOrder(UUID userId, String shippingAddress) {
+    public OrderResponseDTO createOrder(UUID userId, String shippingAddress) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
 
@@ -47,7 +48,6 @@ public class OrderService {
         order.setOrderDate(LocalDateTime.now());
         order.setShippingAddress(shippingAddress);
         order.setStatus("CREATED");
-
         order.setDeliveryDate(LocalDateTime.now().plusDays(3));
 
         List<CartItem> cartItems = cartItemRepository.findByUser(user);
@@ -75,10 +75,37 @@ public class OrderService {
         // Eliminar los artículos del carrito después de confirmar la orden
         cartItemRepository.deleteByUser(user);
 
-        return savedOrder;
+        return mapToOrderResponseDTO(savedOrder);
     }
-    public List<Order> getOrdersByUserId(UUID userId) {
-        return orderRepository.findByUserId(userId);
+
+    public List<OrderResponseDTO> getOrdersByUserId(UUID userId) {
+        List<Order> orders = orderRepository.findByUserId(userId);
+        return orders.stream()
+                .map(this::mapToOrderResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    private OrderResponseDTO mapToOrderResponseDTO(Order order) {
+        OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
+        orderResponseDTO.setOrderId(order.getId());
+        orderResponseDTO.setOrderDate(order.getOrderDate());
+        orderResponseDTO.setShippingAddress(order.getShippingAddress());
+        orderResponseDTO.setStatus(order.getStatus());
+        orderResponseDTO.setDeliveryDate(order.getDeliveryDate());
+
+        List<OrderResponseDTO.OrderItemResponseDTO> items = order.getOrderItems().stream().map(item -> {
+            OrderResponseDTO.OrderItemResponseDTO itemDTO = new OrderResponseDTO.OrderItemResponseDTO();
+            itemDTO.setProductId(item.getProduct().getId());
+            itemDTO.setNombre(item.getProduct().getNombre());
+            itemDTO.setDescripcion(item.getProduct().getDescripcion());
+            itemDTO.setPrecio(item.getProduct().getPrecio());
+            itemDTO.setImagen(item.getProduct().getImagen());
+            itemDTO.setQuantity(item.getQuantity());
+            return itemDTO;
+        }).collect(Collectors.toList());
+
+        orderResponseDTO.setItems(items);
+        return orderResponseDTO;
     }
 
 

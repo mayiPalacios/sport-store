@@ -34,14 +34,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onOpenChange }) => {
 
       let log: any = login(credentials);
 
-      await dispatch(log as any);
 
-      Swal.fire({
-        title: "Login Successful",
-        text: "Welcome back!",
-        icon: "success",
-        confirmButtonText: "Ok",
-      });
+      await dispatch(log as any);
+      
 
       onOpenChange();
     } catch (err: any) {
