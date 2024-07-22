@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.colored-toast.swal2-icon-success {
+    background-color: #a5dc86 !important;
+  }
+  
+.custom-table {
+  font-size: 1rem;
+}
+
+.custom-header {
+  font-size: 1rem;
+  padding: 1rem; 
+}
+
+.custom-cell {
+  padding: 0.8rem;
+}
+
+.custom-actions {
+  font-size: 1.25rem; 
+}

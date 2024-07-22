@@ -1,0 +1,165 @@
+{
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "Balón de Fútbol Clásico",
+            "descripcion": "Un balón de fútbol clásico de alta calidad, ideal para entrenamientos y partidos recreativos.",
+            "precio": 25.99,
+            "cantidad": 100,
+            "imagen": "https://golty.com.co/wp-content/uploads/2023/08/balon-futbol-traditional-profesional-n4-2.png"
+          },
+          {
+            "id": 2,
+            "nombre": "Raqueta de Tenis Pro",
+            "descripcion": "Raqueta de tenis profesional, ligera y duradera, perfecta para jugadores avanzados.",
+            "precio": 79.99,
+            "cantidad": 50,
+            "imagen": "https://wilsonstore.com.pe/cdn/shop/products/8ee62bbd-1974-4940-a818-322bc5c062ee_1500x.jpg?v=1708367111"
+          },
+          {
+            "id": 3,
+            "nombre": "Botas de Fútbol Avanzadas",
+            "descripcion": "Botas de fútbol avanzadas, cómodas y resistentes, diseñadas para un rendimiento profesional.",
+            "precio": 59.99,
+            "cantidad": 75,
+            "imagen": "https://www.neo2.com/wp-content/uploads/2022/08/botas-futbol-unisex-nike-mercurual-1.jpg"
+          },
+          {
+            "id": 4,
+            "nombre": "Guantes de Boxeo Pro",
+            "descripcion": "Guantes de boxeo acolchados y profesionales, ideales para entrenamientos intensos y competiciones.",
+            "precio": 34.99,
+            "cantidad": 30,
+            "imagen": "https://siman.vtexassets.com/arquivos/ids/4662986-800-800?v=638297766713600000&width=800&height=800&aspect=true"
+          },
+          {
+            "id": 5,
+            "nombre": "Pesas de Mancuernas Ajustables",
+            "descripcion": "Juego de pesas de mancuernas ajustables, perfecto para entrenamientos en casa y en el gimnasio.",
+            "precio": 49.99,
+            "cantidad": 20,
+            "imagen": "https://contents.mediadecathlon.com/p1248562/k$01448487cc01f6437afa685728065895/kit-mancuerna-10-kg-musculacion-corength.jpg?format=auto&quality=40&f=800x800"
+          },
+          {
+            "id": 6,
+            "nombre": "Bicicleta de Montaña Robust",
+            "descripcion": "Bicicleta de montaña robusta y resistente, diseñada para terrenos difíciles y aventuras extremas.",
+            "precio": 299.99,
+            "cantidad": 10,
+            "imagen": "https://ss201.liverpool.com.mx/xl/1135460423.jpg"
+          },
+          {
+            "id": 7,
+            "nombre": "Cinta de Correr Plegable",
+            "descripcion": "Cinta de correr plegable y compacta, ideal para entrenamientos cardiovasculares en casa.",
+            "precio": 499.99,
+            "cantidad": 5,
+            "imagen": "https://i.blogs.es/261a4b/curve_sprint_back_800/1366_2000.jpg"
+          },
+          {
+            "id": 8,
+            "nombre": "Traje de Neopreno Alta Calidad",
+            "descripcion": "Traje de neopreno de alta calidad, diseñado para mantenerte caliente y cómodo en aguas frías.",
+            "precio": 89.99,
+            "cantidad": 15,
+            "imagen": "https://bellini.es/wp-content/uploads/2022/03/Traje-neopreno-Ripcurl-Freelite-2mm-men-1.jpg"
+          },
+          {
+            "id": 9,
+            "nombre": "Pala de Padel Resistente",
+            "descripcion": "Pala de padel ligera y resistente, perfecta para jugadores de todos los niveles que buscan rendimiento.",
+            "precio": 59.99,
+            "cantidad": 40,
+            "imagen": "https://padelstore.mx/wp-content/uploads/2022/08/Black-Thunder.png"
+          },
+          {
+            "id": 10,
+            "nombre": "Set de Golf Completo",
+            "descripcion": "Set de golf completo con palos, bolsa y accesorios, ideal para principiantes y profesionales.",
+            "precio": 399.99,
+            "cantidad": 8,
+            "imagen": "https://i.ebayimg.com/thumbs/images/g/-yIAAOSwII9mWBBQ/s-l1200.jpg"
+          },
+          {
+            "id": 11,
+            "nombre": "Balón de Fútbol Profesional",
+            "descripcion": "Balón de fútbol profesional con diseño mejorado para mayor control y durabilidad.",
+            "precio": 29.99,
+            "cantidad": 80,
+            "imagen": "https://golty.com.co/wp-content/uploads/2023/08/balon-futbol-traditional-profesional-n4-2.png"
+          },
+          {
+            "id": 12,
+            "nombre": "Raqueta de Tenis Ligera",
+            "descripcion": "Raqueta de tenis ligera y resistente, perfecta para entrenamientos diarios y torneos.",
+            "precio": 74.99,
+            "cantidad": 60,
+            "imagen": "https://wilsonstore.com.pe/cdn/shop/products/8ee62bbd-1974-4940-a818-322bc5c062ee_1500x.jpg?v=1708367111"
+          },
+          {
+            "id": 13,
+            "nombre": "Botas de Fútbol Confort",
+            "descripcion": "Botas de fútbol diseñadas para ofrecer confort y rendimiento en cada partido.",
+            "precio": 64.99,
+            "cantidad": 70,
+            "imagen": "https://www.neo2.com/wp-content/uploads/2022/08/botas-futbol-unisex-nike-mercurual-1.jpg"
+          },
+          {
+            "id": 14,
+            "nombre": "Guantes de Boxeo Entrenamiento",
+            "descripcion": "Guantes de boxeo ideales para sesiones de entrenamiento y sparring.",
+            "precio": 32.99,
+            "cantidad": 40,
+            "imagen": "https://siman.vtexassets.com/arquivos/ids/4662986-800-800?v=638297766713600000&width=800&height=800&aspect=true"
+          },
+          {
+            "id": 15,
+            "nombre": "Pesas de Mancuernas Básicas",
+            "descripcion": "Juego de pesas de mancuernas básicas, perfectas para principiantes y entrenamientos ligeros.",
+            "precio": 44.99,
+            "cantidad": 30,
+            "imagen": "https://contents.mediadecathlon.com/p1248562/k$01448487cc01f6437afa685728065895/kit-mancuerna-10-kg-musculacion-corength.jpg?format=auto&quality=40&f=800x800"
+          },
+          {
+            "id": 16,
+            "nombre": "Bicicleta de Montaña Extrema",
+            "descripcion": "Bicicleta de montaña extrema, diseñada para aventuras y desafíos en terrenos difíciles.",
+            "precio": 349.99,
+            "cantidad": 8,
+            "imagen": "https://ss201.liverpool.com.mx/xl/1135460423.jpg"
+          },
+          {
+            "id": 17,
+            "nombre": "Cinta de Correr Profesional",
+            "descripcion": "Cinta de correr profesional, equipada con funciones avanzadas para un entrenamiento completo.",
+            "precio": 599.99,
+            "cantidad": 4,
+            "imagen": "https://i.blogs.es/261a4b/curve_sprint_back_800/1366_2000.jpg"
+          },
+          {
+            "id": 18,
+            "nombre": "Traje de Neopreno Deportivo",
+            "descripcion": "Traje de neopreno deportivo, diseñado para actividades acuáticas en condiciones frías.",
+            "precio": 94.99,
+            "cantidad": 12,
+            "imagen": "https://bellini.es/wp-content/uploads/2022/03/Traje-neopreno-Ripcurl-Freelite-2mm-men-1.jpg"
+          },
+          {
+            "id": 19,
+            "nombre": "Pala de Padel Alta Calidad",
+            "descripcion": "Pala de padel de alta calidad, perfecta para jugadores que buscan el mejor rendimiento.",
+            "precio": 69.99,
+            "cantidad": 35,
+            "imagen": "https://padelstore.mx/wp-content/uploads/2022/08/Black-Thunder.png"
+          },
+          {
+            "id": 20,
+            "nombre": "Set de Golf Premium",
+            "descripcion": "Set de golf premium con palos de alta calidad y bolsa resistente.",
+            "precio": 449.99,
+            "cantidad": 6,
+            "imagen": "https://i.ebayimg.com/thumbs/images/g/-yIAAOSw"
+          }
+    ]
+  }
+  
